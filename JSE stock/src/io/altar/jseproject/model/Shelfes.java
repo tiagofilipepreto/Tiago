@@ -1,7 +1,6 @@
 package io.altar.jseproject.model;
 
-public class Shelfes {
-	private long id;
+public class Shelfes extends Entity {
 	private int capacidade;
 	private long productId;
 	private float dailyPrice;
@@ -13,9 +12,8 @@ public class Shelfes {
 	}
 	
 	
-	public Shelfes(long id, int capacidade, long productId, float dailyPrice) {
+	public Shelfes(int capacidade, long productId, float dailyPrice) {
 		super();
-		this.id = id;
 		this.capacidade = capacidade;
 		this.productId = productId;
 		this.dailyPrice = dailyPrice;
@@ -23,12 +21,6 @@ public class Shelfes {
 
 
 
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	public int getCapacidade() {
 		return capacidade;
 	}
@@ -51,7 +43,7 @@ public class Shelfes {
 
 	@Override
 	public String toString() {
-		return "Shelfes [id=" + id + ", capacidade=" + capacidade + ", productId=" + productId + ", dailyPrice="
+		return "Shelfes [capacidade=" + capacidade + ", productId=" + productId + ", dailyPrice="
 				+ dailyPrice + "]";
 	}
 	

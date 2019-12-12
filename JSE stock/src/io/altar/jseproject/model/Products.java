@@ -2,8 +2,8 @@ package io.altar.jseproject.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Products {
-	private long id;
+public class Products extends Entity {
+
 	private int discount;
 	private int iva;
 	private float pvp;
@@ -23,8 +23,7 @@ public class Products {
 	}
 
 
-	public Products(long id, int discount, int iva, float pvp, List<Long> shelvesId) {
-		this.id = id;
+	public Products(int discount, int iva, float pvp, List<Long> shelvesId) {
 		this.discount = discount;
 		this.iva = iva;
 		this.pvp = pvp;
@@ -32,12 +31,7 @@ public class Products {
 	}
 	
 	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+
 	public int getDiscount() {
 		return discount;
 	}
@@ -72,7 +66,7 @@ public class Products {
 
 	@Override
 	public String toString() {
-		return "Products [id=" + id + ", discount=" + discount + ", iva=" + iva + ", pvp=" + pvp + ", shelvesId="
+		return "Products [discount=" + discount + ", iva=" + iva + ", pvp=" + pvp + ", shelvesId="
 				+ shelvesId + "]";
 	}
 	

@@ -12,11 +12,11 @@ class DesafioTest {
 	public void initEach(){
 	    System.out.println("\nInit Test\n");
 	}
+	
 	@AfterEach
 	public void endEach(){
 	    System.out.println("\nEnd Test\n");
 	}
-	 
 	
 	@Test
 	void test1() {
