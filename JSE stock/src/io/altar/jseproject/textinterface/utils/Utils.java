@@ -27,7 +27,7 @@ public class Utils {
 		}
 	}
 
-	public int getValidInt(String msg, int[] ivas) {
+	public int getValidInt(String msg, int[] values) {
 		int value = getInt(msg);
 		while (true) {
 
@@ -50,4 +50,19 @@ public class Utils {
 		}
 
 	}
-}
+
+
+public float getFloat(String msg) {
+	while (true) {
+		String value = getValue(msg);
+		Scanner sc2 = new Scanner(value);
+		if (sc2.hasNextFloat()) {
+			return sc2.nextFloat();
+		} else {
+			sc2.nextLine();
+		}
+
+		sc2.close();
+
+	}
+}}
