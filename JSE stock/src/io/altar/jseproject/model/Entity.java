@@ -1,13 +1,14 @@
 package io.altar.jseproject.model;
 
 public class Entity {
-	private long Id;
+	
+	private Long Id;
 
-	public long getId() {
+	public Long getId() {
 		return Id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		Id = id;
 	}
 }
