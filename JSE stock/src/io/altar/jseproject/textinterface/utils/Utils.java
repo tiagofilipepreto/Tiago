@@ -31,12 +31,12 @@ public class Utils {
 		int value = getInt(msg);
 		while (true) {
 
-			for (int i = 0; i < ivas.length; i++) {
-				if (value == ivas[i]) {
-					return ivas[i];
+			for (int i = 0; i < values.length; i++) {
+				if (value == values[i]) {
+					return values[i];
 				}
 			}
-			value = getInt("Tem de ser im valor de iva 23 ou 13 o 6.");
+			value = getInt("Tem de ser im valor de "+ values);
 		}
 	}
 
@@ -46,7 +46,7 @@ public class Utils {
 			if (value >= min && value <= max) {
 				return value;
 			}
-			value = getInt("tente novemente");
+			value = getInt("Entre "+min+" e "+ max);
 		}
 
 	}

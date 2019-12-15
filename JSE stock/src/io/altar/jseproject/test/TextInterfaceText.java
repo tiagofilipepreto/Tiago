@@ -1,6 +1,5 @@
 package io.altar.jseproject.test;
 
-import io.altar.jseproject.model.Products;
 import io.altar.jseproject.textinterface.TextInterface;
 
 public class TextInterfaceText {

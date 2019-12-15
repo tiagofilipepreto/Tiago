@@ -81,4 +81,9 @@ public class TextInterface {
 		} while (option != 5);
 	}
 
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

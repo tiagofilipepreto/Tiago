@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Products extends Entity {
+	private String nome;
 	private float initprice;
 	private int discount;
 	private int iva;
@@ -23,14 +24,24 @@ public class Products extends Entity {
 	}
 
 
-	public Products(float initprice,int discount, int iva, float pvp, List<Long> shelvesId) {
+	public Products(String nome,float initprice,int discount, int iva, float pvp, List<Long> shelvesId) {
+		this.nome= nome;
 		this.initprice= initprice;
 		this.discount = discount;
 		this.iva = iva;
 		this.pvp = pvp;
 		this.shelvesId = shelvesId;
 	}
-	
+
+
+	public String getNome() {
+		return nome;
+	}
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 
 	public float getInitprice() {
@@ -85,13 +96,8 @@ public class Products extends Entity {
 
 	@Override
 	public String toString() {
-		return "Products [discount=" + discount + ", iva=" + iva + ", pvp=" + pvp + ", shelvesId="
-				+ shelvesId + "]";
+		return "Products [nome=" + nome + ", initprice=" + initprice + ", discount=" + discount + ", iva=" + iva
+				+ ", pvp=" + pvp + ", shelvesId=" + shelvesId + "]";
 	}
-	
-	
-	
-	
-	
 	
 }

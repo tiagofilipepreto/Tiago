@@ -9,14 +9,15 @@ public class TextInterface {
 	
 	
 	Utils sc = new Utils();
-
+	ProductRepository PROD_REP_INSTACE = ProductRepository.getInstance();
+	shelfRepository SHELF_REP_INSTACE = shelfRepository.getInstance();
 	public void start() {
 		int option =0;
 		do {
 			System.out.println("Por favor selecione uma das seguintes opções:\n" + "1) Listar produtos\n"
 					+ "2) Listar prateleiras\n" + "3) Sair");
 			int[] options= {1 ,2 ,3};
-			option =sc.getValidInt("selecionar opeçao", options);
+			option =sc.getValidInt("selecionar ope�ao", options);
 			switch (option) {
 			case 1:
 				listaProductos();
@@ -34,24 +35,29 @@ public class TextInterface {
 	}
 
 	public void listaProductos() {
-		ProductRepository PROD_REP_INSTACE = ProductRepository.getInstance();
+		
 		do {
 			System.out.println("Por favor selecione uma das seguintes opções:\n" + "1) Criar novo produto\n"
 					+ "2) Editar um produto existente\n" + "3) Consultar o detalhe de um produto\n"
 					+ "4) Remover um produto\n" + "5) Voltar ao ecrã anterior");
 			switch (sc.getValidInt("1 a 5", 1, 5)) {
 			case 1:
+				if (SHELF_REP_INSTACE.isEmpty()) {
+					System.out.println("cria uma prateleira");
+					return;
+				}
 				PROD_REP_INSTACE.addEntity(addProduct());
 				break;
 
 			case 2:
-
+				
+				PROD_REP_INSTACE.editEntity(sc.getInt("Id do producto"),addProduct());
 				break;
 			case 3:
-
+				System.out.println(PROD_REP_INSTACE.getEntity(sc.getInt("Id do producto")));
 				break;
 			case 4:
-
+				PROD_REP_INSTACE.removeEntity(sc.getInt("Id do producto"));
 				break;
 			case 5:
 				return;
@@ -62,14 +68,26 @@ public class TextInterface {
 	int[]ivas= {23, 13, 6};
 	private Products addProduct() {
 		Products product = new Products() ;
-			product.setDiscount(sc.getInt("Colocar disconto(%):"));
-			product.setIva(sc.getValidInt("Colocar iva(%):",ivas));
-			product.setInitprice(sc.getFloat("colocar preco iniciar"));
-			
+			product.setNome(sc.getValue("Nome do producto"));
+			int discount = sc.getInt("Colocar disconto(%):");
+			product.setDiscount(discount);
+			int iva = sc.getValidInt("Colocar iva(%):",ivas);
+			product.setIva(iva);
+			float initPrice = sc.getFloat("colocar preco inicial");
+			product.setInitprice(initPrice);
+			float pvp = calcoloPvp(discount,iva,initPrice);
+			product.setPvp(pvp);
+//			product.setShelvesId();
+//			System.out.println(product);
 			return product;
 	}
 	
-
+	private float calcoloPvp (int discount,int iva,float initPrice) {
+		float pv = initPrice*(1 + (float) iva/100);
+		float discount1 = pv*(1* (float)discount/100);
+		float pvp =pv - discount1;
+		return pvp;
+	}
 	
 	
 	

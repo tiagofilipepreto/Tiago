@@ -44,8 +44,8 @@ public abstract class EntityRepository<T extends Entity> {
 		return  myMap.get(Id) ;
 	}
 	
-	public void editEntity(T t) {
-		myMap.replace(t.getId(), t);
+	public void editEntity(long id, T t) {
+		myMap.replace(id, t);
 	}
 	
 	public Collection<Long> geAllIds(){

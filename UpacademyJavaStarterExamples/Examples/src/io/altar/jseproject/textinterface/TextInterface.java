@@ -2,7 +2,7 @@ package io.altar.jseproject.textinterface;
 
 import io.altar.jseproject.textinterface.ScannerUtils.ScannerUtils;
 
-public class TextInterface {
+private class TextInterface {
 	ScannerUtils sc = new ScannerUtils();
 
 	public void ecraInicio() {
