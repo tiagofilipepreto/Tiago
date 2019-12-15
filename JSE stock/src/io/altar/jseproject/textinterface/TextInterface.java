@@ -1,6 +1,7 @@
 package io.altar.jseproject.textinterface;
 
 import io.altar.jseproject.model.Products;
+import io.altar.jseproject.model.Shelfes;
 import io.altar.jseproject.repositories.ProductRepository;
 import io.altar.jseproject.repositories.shelfRepository;
 import io.altar.jseproject.textinterface.utils.Utils;
@@ -94,29 +95,36 @@ public class TextInterface {
 	
 	
 	public void listashelves() {
-		shelfRepository PROD_REP_INSTACE = shelfRepository.getInstance();
 		do {
 			System.out.println("Por favor selecione uma das seguintes opções:\n" + "1) Criar shelves\n"
 					+ "2) Editar shelves existente\n" + "3) Consultar shelves\n"
 					+ "4) Remover um shelves\n" + "5) Voltar ao ecrã anterior");
 			switch (sc.getValidInt("1 a 5", 1, 5)) {
 			case 1:
-				
+				SHELF_REP_INSTACE.addEntity(addShelves());
 				break;
 
 			case 2:
-
+				SHELF_REP_INSTACE.editEntity(sc.getInt("Id da Shelf"), addShelves());
 				break;
 			case 3:
-
+				System.out.println(SHELF_REP_INSTACE.getAll());
 				break;
 			case 4:
-
+				SHELF_REP_INSTACE.removeEntity(sc.getInt("Id dA Shelf"));
 				break;
 			case 5:
 				return;
 				
 			}
 		} while (true);
+	}
+	private Shelfes addShelves() {
+		int capacidade= sc.getInt("Colocar capacidade da shelf:");
+		long productId=sc.getInt("Colocar disconto(%):");
+		float dailyPrice=sc.getInt("Colocar pre�o diario:");
+		Shelfes shelves = new Shelfes(capacidade, productId,dailyPrice) ;
+		return shelves;
+		
 	}
 }
