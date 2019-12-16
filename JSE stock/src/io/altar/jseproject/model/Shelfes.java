@@ -12,6 +12,13 @@ public class Shelfes extends Entity {
 	}
 	
 	
+	public Shelfes(int capacidade, float dailyPrice) {
+		super();
+		this.capacidade = capacidade;
+		this.dailyPrice = dailyPrice;
+	}
+
+
 	public Shelfes(int capacidade, long productId, float dailyPrice) {
 		super();
 		this.capacidade = capacidade;

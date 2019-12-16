@@ -19,7 +19,7 @@ public class Products extends Entity {
 	public Products(int discount, int iva, float pvp) {
 		super();
 		this.discount = discount;
-		this.iva = iva;
+		this.iva =  iva;
 		this.pvp = pvp;
 	}
 
@@ -96,7 +96,7 @@ public class Products extends Entity {
 
 	@Override
 	public String toString() {
-		return "Products [nome=" + nome + ", initprice=" + initprice + ", discount=" + discount + ", iva=" + iva
+		return "Products [ID ="+getId()+",nome=" + nome + ", initprice=" + initprice + ", discount=" + discount + ", iva=" + iva
 				+ ", pvp=" + pvp + ", shelvesId=" + shelvesId + "]";
 	}
 	

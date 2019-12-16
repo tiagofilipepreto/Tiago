@@ -18,13 +18,15 @@ public class TextInterface {
 			System.out.println("Por favor selecione uma das seguintes opÃ§Ãµes:\n" + "1) Listar produtos\n"
 					+ "2) Listar prateleiras\n" + "3) Sair");
 			int[] options= {1 ,2 ,3};
-			option =sc.getValidInt("selecionar opeçao", options);
+			option =sc.getValidInt("selecionar opeï¿½ao", options);
 			switch (option) {
 			case 1:
 				listaProductos();
+				PROD_REP_INSTACE.printAll();
 				break;
 			case 2:
 				listashelves();
+				SHELF_REP_INSTACE.printAll();
 				break;
 			case 3:
 				System.out.println("adeus");
@@ -43,22 +45,57 @@ public class TextInterface {
 					+ "4) Remover um produto\n" + "5) Voltar ao ecrÃ£ anterior");
 			switch (sc.getValidInt("1 a 5", 1, 5)) {
 			case 1:
-				if (SHELF_REP_INSTACE.isEmpty()) {
-					System.out.println("cria uma prateleira");
-					return;
-				}
 				PROD_REP_INSTACE.addEntity(addProduct());
 				break;
 
 			case 2:
+				if(PROD_REP_INSTACE.isEmpty()) {
+					System.out.println("Nao tem Productos");
+					break;
+				}
+				Products product= PROD_REP_INSTACE.getEntity(sc.getValidLong("Id do producto",PROD_REP_INSTACE.geAllIds()));
+				System.out.println("Nome do Producto: "+product.getNome());
+				String nome =sc.getValue("Novo nome do producto");
+				product.setNome(nome.isEmpty()? product.getNome():nome);
 				
-				PROD_REP_INSTACE.editEntity(sc.getInt("Id do producto"),addProduct());
+				System.out.println("Disconto(%) actual: "+product.getDiscount());
+				int discount = sc.getInt("Colocar novo disconto(%):");
+				product.setDiscount(discount==-1?product.getDiscount():discount);
+				
+				System.out.println("Iva(%) actual:"+product.getIva());
+				int iva = sc.getValidInt("Colocar iva(%):",ivas);
+				product.setIva(iva==-1?product.getIva():iva);
+				
+				System.out.println("preco inicial:"+product.getInitprice());
+				float initPrice = sc.getFloat("colocar novo preco inicial");
+				product.setInitprice(initPrice==-1?product.getInitprice():initPrice);
+				
+				float pvp = calcoloPvp(product.getDiscount(),product.getIva(),product.getInitprice());
+				product.setPvp(pvp);
+				
+				PROD_REP_INSTACE.editEntity(product);
+				
 				break;
 			case 3:
-				System.out.println(PROD_REP_INSTACE.getEntity(sc.getInt("Id do producto")));
+				if(PROD_REP_INSTACE.isEmpty()) {
+					System.out.println("Nao tem Productos");
+					break;
+				}
+				System.out.println(PROD_REP_INSTACE.getEntity(sc.getValidLong("Id do producto",PROD_REP_INSTACE.geAllIds())));
 				break;
 			case 4:
-				PROD_REP_INSTACE.removeEntity(sc.getInt("Id do producto"));
+				if(PROD_REP_INSTACE.isEmpty()) {
+					System.out.println("Nao tem Productos");
+					break;
+				}
+				long remove =sc.getValidLong("Id do producto",PROD_REP_INSTACE.geAllIds());
+				switch (sc.getValidInt("remover:\\n 1) sim \\n 0)nao", 0, 1)) {
+				case 0:
+					break;
+				case 1:
+					PROD_REP_INSTACE.removeEntity(remove);
+					break;
+				}
 				break;
 			case 5:
 				return;
@@ -78,8 +115,6 @@ public class TextInterface {
 			product.setInitprice(initPrice);
 			float pvp = calcoloPvp(discount,iva,initPrice);
 			product.setPvp(pvp);
-//			product.setShelvesId();
-//			System.out.println(product);
 			return product;
 	}
 	
@@ -105,13 +140,32 @@ public class TextInterface {
 				break;
 
 			case 2:
+				if(SHELF_REP_INSTACE.isEmpty()) {
+					System.out.println("Nao tem prateleiras");
+					break;
+				}
 				SHELF_REP_INSTACE.editEntity(sc.getInt("Id da Shelf"), addShelves());
 				break;
 			case 3:
-				System.out.println(SHELF_REP_INSTACE.getAll());
+				if(SHELF_REP_INSTACE.isEmpty()) {
+					System.out.println("Nao tem prateleiras");
+					break;
+				}
+				System.out.println(SHELF_REP_INSTACE.getAll()); 
 				break;
 			case 4:
-				SHELF_REP_INSTACE.removeEntity(sc.getInt("Id dA Shelf"));
+				if(SHELF_REP_INSTACE.isEmpty()) {
+					System.out.println("Nao tem prateleiras");
+					break;
+				}
+				long remove =sc.getValidLong("Id do producto",SHELF_REP_INSTACE.geAllIds());
+				switch (sc.getValidInt("remover:\\n 1) sim \\n 0)nao", 0, 1)) {
+				case 0:
+					break;
+				case 1:
+					SHELF_REP_INSTACE.removeEntity(remove);
+					break;
+				}
 				break;
 			case 5:
 				return;
@@ -121,9 +175,8 @@ public class TextInterface {
 	}
 	private Shelfes addShelves() {
 		int capacidade= sc.getInt("Colocar capacidade da shelf:");
-		long productId=sc.getInt("Colocar disconto(%):");
-		float dailyPrice=sc.getInt("Colocar preço diario:");
-		Shelfes shelves = new Shelfes(capacidade, productId,dailyPrice) ;
+		float dailyPrice=sc.getInt("Colocar preï¿½o diario:");
+		Shelfes shelves = new Shelfes(capacidade,dailyPrice) ;
 		return shelves;
 		
 	}

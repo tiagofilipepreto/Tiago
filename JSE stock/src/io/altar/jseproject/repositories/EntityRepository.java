@@ -12,10 +12,9 @@ public abstract class EntityRepository<T extends Entity> {
 	Map<Long, T> myMap= new HashMap<Long,T>();
 	long maxId =0;
 	
-	public static void main (String[] args) {
-		
-	}
+
 	public void addEntity(T t) {
+		t.setId(maxId);
 		myMap.put(maxId, t);
 		maxId++;
 	};
@@ -47,9 +46,16 @@ public abstract class EntityRepository<T extends Entity> {
 	public void editEntity(long id, T t) {
 		myMap.replace(id, t);
 	}
+	public void editEntity( T t) {
+		myMap.replace(t.getId(), t);
+	}
 	
-	public Collection<Long> geAllIds(){
-		return myMap.keySet();
+//	public Collection<Long> geAllIds(){
+//		return myMap.keySet();
+//	}
+	
+	public long[] geAllIds(){
+		return myMap.keySet().stream().mapToLong(l -> l).toArray();
 	}
 	public void printAll() {
 		Iterator<T> prodInterator = getAll().iterator();
