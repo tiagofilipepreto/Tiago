@@ -3,8 +3,6 @@ package io.altar.jseproject.textinterface.utils;
 
 import java.util.Scanner;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 public class Utils {
 	private Scanner sc = new Scanner(System.in);
 
@@ -83,12 +81,12 @@ public class Utils {
 		while (true) {
 			String value = getValue(msg);
 			Scanner sc2 = new Scanner(value);
+			if (value.equals("")) {
+				return -1;
+			}
 			if (sc2.hasNextLong()) {
 				return sc2.nextLong();
-			} else {
-				sc2.nextLine();
-			}
-
+			} 
 			sc2.close();
 
 		}
@@ -104,8 +102,6 @@ public float getFloat(String msg, Boolean valid) {
 		}
 		if (sc2.hasNextFloat()) {
 			return sc2.nextFloat();
-		} else {
-			sc2.nextLine();
 		}
 
 		sc2.close();

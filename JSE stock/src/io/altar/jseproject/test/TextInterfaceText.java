@@ -5,9 +5,10 @@ import io.altar.jseproject.textinterface.TextInterface;
 public class TextInterfaceText {
 	
 	public static void main(String[] args) {
-		TextInterface start= new TextInterface();
-		start.start();
-
+//		TextInterface start= new TextInterface();
+//		start.start();
+		
+		
 		
 	}
 

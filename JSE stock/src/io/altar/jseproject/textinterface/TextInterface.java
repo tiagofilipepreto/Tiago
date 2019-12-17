@@ -67,7 +67,7 @@ public class TextInterface {
 				product.setIva(iva==-1?product.getIva():iva);
 				
 				System.out.println("preco inicial:"+product.getInitprice());
-				float initPrice = sc.getFloat("colocar novo preco inicial");
+				float initPrice = sc.getFloat("colocar novo preco inicial",true);
 				product.setInitprice(initPrice==-1?product.getInitprice():initPrice);
 				
 				float pvp = calcoloPvp(product.getDiscount(),product.getIva(),product.getInitprice());
@@ -94,6 +94,7 @@ public class TextInterface {
 					break;
 				case 1:
 					PROD_REP_INSTACE.removeEntity(remove);
+					System.out.println("Producto removido.");
 					break;
 				}
 				break;
@@ -108,10 +109,10 @@ public class TextInterface {
 		Products product = new Products() ;
 			product.setNome(sc.getValue("Nome do producto"));
 			int discount = sc.getInt("Colocar disconto(%):");
-			product.setDiscount(discount);
+			product.setDiscount(discount==-1?0:discount);
 			int iva = sc.getValidInt("Colocar iva(%):",ivas);
 			product.setIva(iva);
-			float initPrice = sc.getFloat("colocar preco inicial");
+			float initPrice = sc.getFloat("colocar preco inicial",false);
 			product.setInitprice(initPrice);
 			float pvp = calcoloPvp(discount,iva,initPrice);
 			product.setPvp(pvp);
@@ -125,6 +126,9 @@ public class TextInterface {
 		return pvp;
 	}
 	
+//	private List<Long> addshelvesId(){
+//		
+//	};
 	
 	
 	

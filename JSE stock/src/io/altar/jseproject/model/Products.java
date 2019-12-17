@@ -92,7 +92,14 @@ public class Products extends Entity {
 	public void setShelvesId(List<Long> shelvesId) {
 		this.shelvesId = shelvesId;
 	}
-
+	
+	public void addShelvesId(long shelvesId) {
+		this.shelvesId.add(shelvesId);
+	}
+	
+	public void removeshelvesId(long shelvesId) {
+		this.shelvesId.remove(shelvesId);
+	}
 
 	@Override
 	public String toString() {
