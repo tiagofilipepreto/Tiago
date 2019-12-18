@@ -18,7 +18,19 @@ public class ProductAdd extends State {
 				product.setIva(iva);
 				float initPrice = sc.getFloat("colocar preco inicial",false);
 				product.setInitprice(initPrice);
-				product.addShelvesId(addshelvesID());
+
+				long shelvesID;
+				
+				do {
+					if(SHELF_REP_INSTACE.isEmpty()) {
+						break;
+					}
+					shelvesID =sc.getValidLong("colocar id da prateleira", SHELF_REP_INSTACE.geAllIds());
+					if (shelvesID !=-1) {
+						product.addShelvesId(shelvesID);
+					}
+				} while (shelvesID!=-1);
+				
 				float pvp = calcoloPvp(discount,iva,initPrice);
 				product.setPvp(pvp);
 				
@@ -34,15 +46,15 @@ public class ProductAdd extends State {
 		float discount1 = pv*(1* (float)discount/100);
 		float pvp =pv - discount1;
 		return pvp;
-	}
+	}}
 	
-	private long addshelvesID() {
-		long shelvesID;
-		do {
-			shelvesID =sc.getValidLong("colocar id da prateleira", SHELF_REP_INSTACE.geAllIds());
-	
-		} while ((sc.getInt(""))==-1);
-		return shelvesID;
-		
-	}
-}
+//	private long addshelvesID() {
+//		long shelvesID;
+//		do {
+//			shelvesID =sc.getValidLong("colocar id da prateleira", SHELF_REP_INSTACE.geAllIds());
+//	
+//		} while ((sc.getInt(""))==-1);
+//		return shelvesID;
+//		
+//	}
+
