@@ -50,11 +50,11 @@ public abstract class EntityRepository<T extends Entity> {
 		myMap.replace(t.getId(), t);
 	}
 	
-//	public Collection<Long> geAllIds(){
-//		return myMap.keySet();
-//	}
+	public Collection<Long> geAllIDs(){
+		return myMap.keySet();
+	}
 	
-	public long[] geAllIds(){
+	public long[] geAllIdsarray(){
 		return myMap.keySet().stream().mapToLong(l -> l).toArray();
 	}
 	public void printAll() {

@@ -6,10 +6,10 @@ public class ShelvesEdit extends State {
 	public int run() {
 		if(SHELF_REP_INSTACE.isEmpty()) {
 			System.out.println("Nao tem prateleiras");
-			return 6;
+			return 1;
 		}
 		System.out.println(SHELF_REP_INSTACE.getAll()); 
-		return 6;
+		return 1;
 	}
 
 }

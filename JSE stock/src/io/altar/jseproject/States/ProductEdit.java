@@ -6,11 +6,11 @@ public class ProductEdit extends State {
 	int[]ivas= {23, 13, 6};
 	@Override
 	public int run() {
-		if(PROD_REP_INSTACE.isEmpty()) {
+		if(BUSI_PRODDUCTS.isEmpty()) {
 			System.out.println("Nao tem Productos");
 			return 1;
 		}
-		Products product= PROD_REP_INSTACE.getEntity(sc.getValidLong("Id do producto",PROD_REP_INSTACE.geAllIds()));
+		Products product= BUSI_PRODDUCTS.read(sc.getValidLong("Id do producto",BUSI_PRODDUCTS.geAllIdsarray()));
 		System.out.println("Nome do Producto: "+product.getNome());
 		String nome =sc.getValue("Novo nome do producto");
 		product.setNome(nome.isEmpty()? product.getNome():nome);
@@ -30,7 +30,7 @@ public class ProductEdit extends State {
 		float pvp = calcoloPvp(product.getDiscount(),product.getIva(),product.getInitprice());
 		product.setPvp(pvp);
 		
-		PROD_REP_INSTACE.editEntity(product);
+		BUSI_PRODDUCTS.update(product);
 		return 1;
 	}
 	private float calcoloPvp (int discount,int iva,float initPrice) {

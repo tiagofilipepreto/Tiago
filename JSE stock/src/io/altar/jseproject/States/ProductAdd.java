@@ -1,6 +1,7 @@
 package io.altar.jseproject.States;
 
 import io.altar.jseproject.model.Products;
+import io.altar.jseproject.model.Shelfes;
 
 public class ProductAdd extends State {
 
@@ -22,12 +23,13 @@ public class ProductAdd extends State {
 				long shelvesID;
 				
 				do {
-					if(SHELF_REP_INSTACE.isEmpty()) {
+					if(BUSI_SHELVES.isEmpty()) {
 						break;
 					}
-					shelvesID =sc.getValidLong("colocar id da prateleira", SHELF_REP_INSTACE.geAllIds());
+					shelvesID =sc.getValidLong("colocar id da prateleira", BUSI_SHELVES.geAllIdsarray());
 					if (shelvesID !=-1) {
 						product.addShelvesId(shelvesID);
+						
 					}
 				} while (shelvesID!=-1);
 				
@@ -36,7 +38,7 @@ public class ProductAdd extends State {
 				
 		
 		
-		PROD_REP_INSTACE.addEntity(product);
+				BUSI_PRODDUCTS.create(product);
 		return 1;
 		
 	}
@@ -48,13 +50,4 @@ public class ProductAdd extends State {
 		return pvp;
 	}}
 	
-//	private long addshelvesID() {
-//		long shelvesID;
-//		do {
-//			shelvesID =sc.getValidLong("colocar id da prateleira", SHELF_REP_INSTACE.geAllIds());
-//	
-//		} while ((sc.getInt(""))==-1);
-//		return shelvesID;
-//		
-//	}
 

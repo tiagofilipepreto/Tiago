@@ -45,7 +45,10 @@ public class Utils {
 	}
 	public long getValidLong(String msg, long[] values) {
 		long value = getInt(msg);
-		while (value != -1) {
+		if (value==-1) {
+			return -1;
+		}
+		while (true) {
 
 			for (int i = 0; i < values.length; i++) {
 				if (value == values[i]) {
@@ -54,7 +57,7 @@ public class Utils {
 			}
 			value = getInt("Tem de ser im valor de ");
 		}
-		return -1;
+	
 	}
 
 	public int getValidInt(String msg, int min, int max) {
