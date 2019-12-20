@@ -22,11 +22,15 @@ public class BusinessShelf implements BusinessShelfInterface {
 
 	@Override
 	public void delete(long Id) {
+		long idProduct =read(Id).getProductId();
+		BUSINESS_PRODUCTS.updateProductsId(Id,idProduct);
 		SHELF_REP_INSTACE.removeEntity(Id);
+		
 		
 	}
 	@Override
 	public void update(Shelfes t) {
+		BUSINESS_PRODUCTS.updateProductsId(t.getId(),t.getProductId());
 		SHELF_REP_INSTACE.editEntity(t);
 		
 	}
@@ -37,7 +41,6 @@ public class BusinessShelf implements BusinessShelfInterface {
 	
 	@Override
 	public Collection<Long> getAllIDs() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
@@ -46,13 +49,24 @@ public class BusinessShelf implements BusinessShelfInterface {
 	}
 	@Override
 	public void updateProductsId(List<Long> shelvesIdAntigos, List<Long> shelvesIdNovos, long id) {
+		for(long did : shelvesIdAntigos){
+			Shelfes shelvesIdDelete=SHELF_REP_INSTACE.getEntity(did);
+			shelvesIdDelete.setProductId(0);
+			SHELF_REP_INSTACE.editEntity(shelvesIdDelete);
+		
+		}
 		for(long sid : shelvesIdNovos){
-			Shelfes shelves=SHELF_REP_INSTACE.getEntity(sid);
-			shelves.setProductId(id);
-			SHELF_REP_INSTACE.editEntity(shelves);
+			Shelfes shelvesIdAdd=SHELF_REP_INSTACE.getEntity(sid);
+			shelvesIdAdd.setProductId(id);
+			SHELF_REP_INSTACE.editEntity(shelvesIdAdd);
 		
 	}
 
 	
 
-}}
+}
+	@Override
+	public void printaAll() {
+		SHELF_REP_INSTACE.printAll();
+		
+	}}

@@ -5,6 +5,6 @@ import io.altar.jseproject.repositories.ProductRepository;
 
 public interface BusinessProductsInterface extends BusinesssInterface<Products> {
 	ProductRepository PROD_REP_INSTACE = ProductRepository.getInstance();
-	void addShelvesId(long id);
-//	void updateRemoveShelffromProducts(long productId,long shelfeId);
+	void updateProductsId(long ShelfeId, long ProductId);
+
 }

@@ -4,11 +4,11 @@ public class ShelvesConsult extends State {
 
 	@Override
 	public int run() {
-		if(SHELF_REP_INSTACE.isEmpty()) {
+		if(BUSI_SHELVES.isEmpty()) {
 			System.out.println("Nao tem prateleiras");
 			return 1;
 		}
-		System.out.println(SHELF_REP_INSTACE.getEntity(sc.getValidLong("Id da Prateleira",SHELF_REP_INSTACE.geAllIds())));
+		System.out.println(BUSI_SHELVES.read(sc.getValidLong("Id da Prateleira",BUSI_SHELVES.geAllIdsarray())));
 		return 1;
 	}
 

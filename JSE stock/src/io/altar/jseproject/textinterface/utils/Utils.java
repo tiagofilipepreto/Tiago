@@ -45,11 +45,11 @@ public class Utils {
 	}
 	public long getValidLong(String msg, long[] values) {
 		long value = getInt(msg);
-		if (value==-1) {
-			return -1;
-		}
+		
 		while (true) {
-
+			if (value==-1) {
+				return -1;
+			}
 			for (int i = 0; i < values.length; i++) {
 				if (value == values[i]) {
 					return values[i];

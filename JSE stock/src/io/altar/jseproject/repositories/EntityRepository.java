@@ -10,7 +10,7 @@ import io.altar.jseproject.model.Products;
 
 public abstract class EntityRepository<T extends Entity> {
 	Map<Long, T> myMap= new HashMap<Long,T>();
-	long maxId =0;
+	long maxId =1;
 	
 
 	public void addEntity(T t) {

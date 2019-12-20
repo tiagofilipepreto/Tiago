@@ -30,6 +30,19 @@ public class ProductEdit extends State {
 		float pvp = calcoloPvp(product.getDiscount(),product.getIva(),product.getInitprice());
 		product.setPvp(pvp);
 		
+		long shelvesID;
+		
+		do {
+			if(BUSI_SHELVES.isEmpty()) {
+				break;
+			}
+			shelvesID =sc.getValidLong("colocar id da prateleira", BUSI_SHELVES.geAllIdsarray());
+			if (shelvesID !=-1) {
+				product.addShelvesId(shelvesID);
+				
+			}
+		} while (shelvesID!=-1);
+		
 		BUSI_PRODDUCTS.update(product);
 		return 1;
 	}

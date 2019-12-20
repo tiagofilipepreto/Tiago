@@ -50,7 +50,7 @@ public class Shelfes extends Entity {
 
 	@Override
 	public String toString() {
-		return "Shelfes [capacidade=" + capacidade + ", productId=" + productId + ", dailyPrice="
+		return "Shelfes [ID ="+ getId() +", capacidade=" + capacidade + ", productId=" + productId + ", dailyPrice="
 				+ dailyPrice + "]";
 	}
 	

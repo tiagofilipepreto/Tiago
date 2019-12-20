@@ -8,9 +8,11 @@ public class ShelvesAdd extends State {
 	public int run() {
 		int capacidade= sc.getInt("Colocar capacidade da shelf:");
 		float dailyPrice=sc.getInt("Colocar pre�o diario:");
+		
+		
 		Shelfes shelves = new Shelfes(capacidade,dailyPrice) ;
 		
-		SHELF_REP_INSTACE.addEntity(shelves);
+		BUSI_SHELVES.create(shelves);
 		return 1;
 	}
 

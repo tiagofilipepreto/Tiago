@@ -20,6 +20,8 @@ public interface BusinesssInterface <T extends Entity>{
 	
 	boolean isEmpty();
 	
+	void printaAll();
+	
 	long[] geAllIdsarray();
 	
 	

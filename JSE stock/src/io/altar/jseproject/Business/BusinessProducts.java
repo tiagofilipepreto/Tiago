@@ -1,5 +1,6 @@
 package io.altar.jseproject.Business;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class BusinessProducts implements BusinessProductsInterface {
 	@Override
 	public void create(Products t) {
 		PROD_REP_INSTACE.addEntity(t);
-		BUSINESS_SHELVES.updateProductsId(new List<Long>(),t.getShelvesId(),t.getId());
+		BUSINESS_SHELVES.updateProductsId(new ArrayList<Long>(),t.getShelvesId(),t.getId());
 		
 	}
 	@Override
@@ -23,8 +24,9 @@ public class BusinessProducts implements BusinessProductsInterface {
 
 	@Override
 	public void delete(long Id) {
+		 List <Long>shelvesIdAntigos = read(Id).getShelvesId();
 		PROD_REP_INSTACE.removeEntity(Id);
-		
+		BUSINESS_SHELVES.updateProductsId(shelvesIdAntigos,new ArrayList<Long>(),Id);
 		
 	}
 	@Override
@@ -39,18 +41,22 @@ public class BusinessProducts implements BusinessProductsInterface {
 		return PROD_REP_INSTACE.isEmpty();
 	}
 	@Override
-	public void addShelvesId(long id) {
-		// TODO Auto-generated method stub
+	public void printaAll() {
+		PROD_REP_INSTACE.printAll();
 		
 	}
 	@Override
 	public Collection<Long> getAllIDs() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public long[] geAllIdsarray() {
 		return PROD_REP_INSTACE.geAllIdsarray();
+	}
+	@Override
+	public void updateProductsId(long ShelfeId, long ProductId) {
+		
+		
 	}
 	
 }
