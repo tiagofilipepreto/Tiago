@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 import io.altar.jseproject.model.Products;
+import io.altar.jseproject.model.Shelfes;
 
 
 public class BusinessProducts implements BusinessProductsInterface {
@@ -31,8 +32,7 @@ public class BusinessProducts implements BusinessProductsInterface {
 	}
 	@Override
 	public void update(Products t) {
-		long id = t.getId();
-		 List <Long>shelvesIdAntigos = read(id).getShelvesId();
+		 List <Long>shelvesIdAntigos = read(t.getId()).getShelvesId();
 		PROD_REP_INSTACE.editEntity(t);
 		BUSINESS_SHELVES.updateProductsId(shelvesIdAntigos,t.getShelvesId(),t.getId());
 	}
@@ -54,9 +54,22 @@ public class BusinessProducts implements BusinessProductsInterface {
 		return PROD_REP_INSTACE.geAllIdsarray();
 	}
 	@Override
-	public void updateProductsId(long ShelfeId, long ProductId) {
+	public void updateProductsId(long ShelfeId, long ProductIdNovo, long ProductIdAntigo) {
+		if(ProductIdNovo!=0) {
+		Products productIdRemove=PROD_REP_INSTACE.getEntity(ProductIdAntigo);
+		productIdRemove.removeshelvesId(ShelfeId);
+		PROD_REP_INSTACE.editEntity(productIdRemove);
+		}
+		if (ProductIdNovo !=0) {
+			Products productIdedit=PROD_REP_INSTACE.getEntity(ProductIdNovo);
+			productIdedit.addShelvesId(ShelfeId);
+			PROD_REP_INSTACE.editEntity(productIdedit);
+		}
 		
-		
+	}
+	@Override
+	public ArrayList<Long> getshelvesId() {
+		return BUSINESS_SHELVES.getshelvesId();
 	}
 	
 }

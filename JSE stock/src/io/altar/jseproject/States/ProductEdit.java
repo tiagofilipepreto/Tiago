@@ -1,5 +1,7 @@
 package io.altar.jseproject.States;
 
+import java.util.ArrayList;
+
 import io.altar.jseproject.model.Products;
 
 public class ProductEdit extends State {
@@ -31,15 +33,16 @@ public class ProductEdit extends State {
 		product.setPvp(pvp);
 		
 		long shelvesID;
-		
+		ArrayList <Long> arrayShelvesId =BUSI_PRODDUCTS.getshelvesId();
 		do {
-			if(BUSI_SHELVES.isEmpty()) {
+			if(arrayShelvesId.isEmpty()) {
 				break;
 			}
-			shelvesID =sc.getValidLong("colocar id da prateleira", BUSI_SHELVES.geAllIdsarray());
+			System.out.println("Ids de prateleiras vazias"+arrayShelvesId);
+			shelvesID =sc.getValidLongList("colocar id da prateleira", arrayShelvesId);
 			if (shelvesID !=-1) {
 				product.addShelvesId(shelvesID);
-				
+				arrayShelvesId.remove(shelvesID);
 			}
 		} while (shelvesID!=-1);
 		

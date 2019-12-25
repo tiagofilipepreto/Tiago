@@ -1,7 +1,9 @@
 package io.altar.jseproject.Business;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import io.altar.jseproject.model.Shelfes;
 
@@ -23,14 +25,15 @@ public class BusinessShelf implements BusinessShelfInterface {
 	@Override
 	public void delete(long Id) {
 		long idProduct =read(Id).getProductId();
-		BUSINESS_PRODUCTS.updateProductsId(Id,idProduct);
+		BUSINESS_PRODUCTS.updateProductsId(Id,0,idProduct);
 		SHELF_REP_INSTACE.removeEntity(Id);
 		
 		
 	}
 	@Override
 	public void update(Shelfes t) {
-		BUSINESS_PRODUCTS.updateProductsId(t.getId(),t.getProductId());
+		 long ProductIdAntigo = read(t.getId()).getProductId();
+		BUSINESS_PRODUCTS.updateProductsId(t.getId(),t.getProductId(),ProductIdAntigo);
 		SHELF_REP_INSTACE.editEntity(t);
 		
 	}
@@ -59,14 +62,19 @@ public class BusinessShelf implements BusinessShelfInterface {
 			Shelfes shelvesIdAdd=SHELF_REP_INSTACE.getEntity(sid);
 			shelvesIdAdd.setProductId(id);
 			SHELF_REP_INSTACE.editEntity(shelvesIdAdd);
-		
-	}
+		}
 
 	
-
-}
+	}
+	
+	public ArrayList<Long> getshelvesId() {
+		return  SHELF_REP_INSTACE.getShelfCenas();
+		
+	}
+	
 	@Override
 	public void printaAll() {
 		SHELF_REP_INSTACE.printAll();
 		
-	}}
+	}
+}

@@ -1,7 +1,10 @@
 package io.altar.jseproject.textinterface.utils;
 
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 public class Utils {
 	private Scanner sc = new Scanner(System.in);
@@ -53,6 +56,23 @@ public class Utils {
 			for (int i = 0; i < values.length; i++) {
 				if (value == values[i]) {
 					return values[i];
+				}
+			}
+			value = getInt("Tem de ser im valor de ");
+		}
+	
+	}
+	
+	public long getValidLongList(String msg, ArrayList<Long> values) {
+		long value = getInt(msg);
+		
+		while (true) {
+			if (value==-1) {
+				return -1;
+			}
+			for (int i = 0; i < values.size(); i++) {
+				if (value == values.get(i)) {
+					return values.get(i);
 				}
 			}
 			value = getInt("Tem de ser im valor de ");
